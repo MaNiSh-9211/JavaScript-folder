@@ -1,0 +1,34 @@
+the multer.diskstorage is a function which we call and pass the parameter in the form of object. we pass an annonymus object in which we
+can pass an annonymus object.this object contain many keys like storage ,filefilter .these keys are assigne d the name of object that also
+contain keys ehich are assigned to functione.
+e.g
+Set up Multer for file uploads
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './multer/uploads'); // Specify the destination directory
+    },
+    filename: function (req, file, cb) {
+        const fileName = Date.now() + '-' + file.originalname;
+        cb(null, fileName); // Generate unique filenames
+    }
+});
+
+// Filter only image files
+const imageFilter = function (req, file, cb) {
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+        return cb(new Error('Only image files are allowed!'), false);
+    }
+    cb(null, true);
+};
+
+const upload = multer({
+    storage: storage,
+    fileFilter: imageFilter
+});
+
+hare the multer is the middleware so it is exicuted when an request is make by the user at any endpoint. it contain an abject as parametr 
+which have 2 keys . the first key is the storage which is an object that contain 2 function in its keys the key destionation contain the 
+function for saving the file or where the file that user send will be stored .and teh second key contain function for filename that what
+will be the name of file when it is stored in the server inside any folder. and the second one key in the parameter of multer middleware is 
+fr that which kind of files are allowed to upload in the server.
+we can define the function inside the diskstorage functions parameter for that we have to assign the functions name to the keys

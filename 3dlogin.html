@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login with Three.js</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #87CEEB; /* Sky Blue */
+        }
+        canvas {
+            display: block;
+        }
+        #login-form-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1; /* Ensure form appears above the Three.js scene */
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Drop shadow effect */
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input[type="email"],
+        input[type="password"],
+        input[type="submit"] {
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div id="login-form-container">
+        <h2>Login</h2>
+        <form action="/login" method="POST">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Login">
+        </form>
+        <a href="/register">Don't have an account? Create a new account</a>
+    </div>
+
+    <script>
+        // Initialize Three.js
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Create sun
+        const sunGeometry = new THREE.SphereGeometry(20, 32, 32);
+        const sunMaterial = new THREE.MeshBasicMaterial({ color: 0xFFD700 }); // Gold color
+        const sun = new THREE.Mesh(sunGeometry, sunMaterial);
+        scene.add(sun);
+
+        // Position sun
+        sun.position.set(200, 200, -500);
+
+        // Create birds
+        const birdGeometry = new THREE.BoxGeometry(5, 5, 1);
+        const birdMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+        const birds = [];
+        for (let i = 0; i < 10; i++) {
+            const bird = new THREE.Mesh(birdGeometry, birdMaterial);
+            bird.position.set(Math.random() * 200 - 100, Math.random() * 100 + 100, Math.random() * -500);
+            birds.push(bird);
+            scene.add(bird);
+        }
+
+        // Create sea
+        const seaGeometry = new THREE.PlaneGeometry(1000, 1000, 32);
+        const seaMaterial = new THREE.MeshBasicMaterial({ color: 0x003366 }); // Dark blue color
+        const sea = new THREE.Mesh(seaGeometry, seaMaterial);
+        scene.add(sea);
+
+        // Position sea
+        sea.rotation.x = Math.PI / -2;
+        sea.position.y = -100;
+
+        // Create dolphins
+        const dolphinGeometry = new THREE.BoxGeometry(15, 5, 5);
+        const dolphinMaterial = new THREE.MeshBasicMaterial({ color: 0x0000FF }); // Blue color
+        const dolphins = [];
+        for (let i = 0; i < 3; i++) {
+            const dolphin = new THREE.Mesh(dolphinGeometry, dolphinMaterial);
+            dolphin.position.set(Math.random() * 1000 - 500, 0, Math.random() * -500 - 200);
+            dolphins.push(dolphin);
+            scene.add(dolphin);
+        }
+
+        // Position camera
+        camera.position.set(0, 100, 500);
+
+        // Render loop
+        const animate = function () {
+            requestAnimationFrame(animate);
+
+            // Move birds
+            birds.forEach(bird => {
+                bird.position.x += 1;
+                if (bird.position.x > 100) {
+                    bird.position.x = -100;
+                    bird.position.y = Math.random() * 100 + 100;
+                    bird.position.z = Math.random() * -500;
+                }
+            });
+
+            // Move dolphins
+            dolphins.forEach(dolphin => {
+                dolphin.position.x += 2;
+                if (dolphin.position.x > 500) {
+                    dolphin.position.x = -500;
+                    dolphin.position.z = Math.random() * -500 - 200;
+                }
+            });
+
+            renderer.render(scene, camera);
+        };
+
+        animate();
+    </script>
+</body>
+</html>

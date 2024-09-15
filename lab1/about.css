@@ -1,0 +1,112 @@
+/* Reset some basic elements for a consistent look across browsers */
+body, h1, p, a, nav {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+/* Styling the body for a clean background */
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Styling the header and navigation bar */
+header {
+    background-color: black;
+    color: #fff;
+    padding: 1rem 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.nav-item {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+    color: #ff6347;
+}
+
+/* Styling the main section */
+main {
+    padding: 2rem;
+}
+
+.about-section {
+    background: #fff;
+    padding: 2rem;
+    margin: 2rem auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    text-align: center;
+}
+
+.about-section h1 {
+    margin-bottom: 1rem;
+    color: black;
+    font-size: 2rem;
+}
+
+.about-section p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Styling the footer */
+footer {
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: black;
+    padding: 0rem;
+}
+
+.nav-item {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-item .icon {
+    font-size: 1.5rem;
+}
+
+.nav-item .text {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+
+.nav-item:hover {
+    background-color: #A9957B;
+    border-radius: 5px;
+    padding: 0.5rem;
+}

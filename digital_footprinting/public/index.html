@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extended User Agent Data</title>
+</head>
+<body>
+    <h1>Extended User Agent Data</h1>
+    <pre id="output"></pre>
+
+    <script>
+        async function getUserAgentData() {
+            const response = await fetch('/user-agent');
+            const serverData = await response.json();
+
+            // Add screen and document details (client-side data)
+            serverData.screenWidth = window.screen.width;
+            serverData.screenHeight = window.screen.height;
+            serverData.clientWidth = document.documentElement.clientWidth;
+            serverData.clientHeight = document.documentElement.clientHeight;
+
+            // Print the combined data
+            document.getElementById('output').textContent = JSON.stringify(serverData, null, 2);
+        }
+
+        // Display user agent data on page load
+        window.onload = getUserAgentData;
+    </script>
+</body>
+</html>

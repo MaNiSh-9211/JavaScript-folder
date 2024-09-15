@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload Form</title>
+</head>
+<body>
+    <h1>File Upload Form</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required><br><br>
+        
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image1"  required><br><br>
+
+
+
+        <label for="image">Image2:</label>
+        <input type="file" id="image2" name="image2"  required><br><br>
+        <label for="image">Image3:</label>
+        <input type="file" id="image3" name="image3"  required><br><br>
+
+        <ul>
+            <li><input type="checkbox" name="listItem" value="Item 1"> Item 1</li>
+            <li><input type="checkbox" name="listItem" value="Item 2"> Item 2</li>
+            <li><input type="checkbox" name="listItem" value="Item 3"> Item 3</li>
+        </ul>
+        <select name="dropdown">
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+        </select>
+        <label for="option1">Option 1</label><br>
+        <input type="radio" id="option2" name="option" value="option2">
+        <label for="option2">Option 2</label><br>
+        <input type="radio" id="option3" name="option" value="option3">
+
+        
+        <label for="content">Content:</label><br>
+        <textarea id="content" name="content" rows="4" cols="50" required></textarea><br><br>
+        
+        <button type="submit">Upload</button>
+    </form>
+</body>
+</html>
+
+
+<!-- Why Use enctype="multipart/form-data":
+Support for Binary Data: By default, HTML forms use application/x-www-form-urlencoded as the encoding type,
+ which is suitable for sending simple text data. However, for uploading files, you need to use multipart/form-data 
+because it allows binary data (such as files) to be transmitted.
+
+File Uploads: When a form includes file inputs (<input type="file">), the selected files cannot be encoded as simple text. 
+They need to be encoded as parts of a multipart message, where each part represents a file being uploaded. 
+This multipart encoding allows the server to distinguish between form fields and file data.
+
+Preserving File Integrity: Using multipart/form-data ensures that the uploaded files are transmitted without modification. 
+This is important for preserving the integrity of binary files such as images, documents, or videos. -->

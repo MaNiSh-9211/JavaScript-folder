@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color:red;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: green;
+    text-align: center;
+    margin-top: 50px; /* Added margin top for better visibility */
+}
+
+p {
+    color:blue;
+    text-align: center;
+}
+#img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#imc {
+    max-width: 500%;
+    max-height: 500%;
+}
